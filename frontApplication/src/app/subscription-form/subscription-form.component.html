@@ -1,0 +1,40 @@
+<h4 class="text-center mb-5">Register</h4>
+<div class="container-sm bg-light">
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="mb-3 mt-3 pe-5">
+      <label class="form-label" for="username-logon">Username</label>
+      <input class="form-control" type="text" id="username-logon" formControlName="username">
+      <div *ngIf="registerForm.controls.username.invalid && registerForm.controls.username.touched"
+      class = "error-text">
+          <div *ngIf="registerForm.controls.username.errors?.required">Username is required.</div>
+      </div>
+    </div>
+    <div>
+      <label class="form-label" for="email-logon">Email</label>
+      <input class="form-control" type="email" id="email-logon" formControlName="email">
+      <div *ngIf="registerForm.controls.email.invalid && registerForm.controls.email.touched"
+      class = "error-text">
+        <div *ngIf="registerForm.controls.email.errors?.required">Email is required.</div>
+        <div *ngIf="registerForm.controls.email.errors?.email">Invalid email format.</div>
+      </div>
+    </div>
+    <div>
+      <label class="form-label" for="password-logon">Password</label>
+      <input class="form-control" type="password" id="password-logon" formControlName="password">
+      <div *ngIf="registerForm.controls.password.invalid && registerForm.controls.password.touched"
+      class = "error-text">
+        <div *ngIf="registerForm.controls.password.errors?.required">Password is required.</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+    
+  <div id="error-message" class="error-text"></div>
+
+  <nav class="my-2">
+    Already have an account?
+    <a routerLink="../login">
+        Login
+    </a>
+  </nav>
+</div>

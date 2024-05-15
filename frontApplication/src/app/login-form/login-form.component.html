@@ -1,0 +1,29 @@
+<div>
+    <h4 class="text-center mb-5">Login</h4>
+    <div class="container-sm bg-light">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3 mt-3 pe-5">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email-login" formControlName="email">
+                <div *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched" class="error-text">
+                    <div *ngIf="loginForm.controls.email.errors?.required">Email is required.</div>
+                    <div *ngIf="loginForm.controls.email.errors?.email">Invalid email format.</div>
+                </div>
+            </div>
+            <div class="mb-3 pe-5">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password"  class="form-control" id="password-login" formControlName="password">
+                <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched" class="error-text">
+                    <div *ngIf="loginForm.controls.password.errors?.required">Password is required.</div>
+                </div>
+            </div>
+            <button type="submit"  class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+        </form>    
+        <nav class="mt-2 mb-2">
+            <a routerLink="../register">
+                Don't have an account? Register
+            </a>
+        </nav>
+        <div id="error-message" class="error-text"></div>
+    </div>
+</div>

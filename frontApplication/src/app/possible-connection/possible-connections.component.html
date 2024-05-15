@@ -1,0 +1,25 @@
+<div>
+    <span style="font-weight:bold">{{possibleConnection.user.name}}</span>
+    @if (isVisible) {
+        @if(possibleConnection.friendsInCommon > 0) {
+            @if(possibleConnection.friendsInCommon > 1) {
+                <small>
+                    {{possibleConnection.friendsInCommon}} friends in common
+                </small>
+            }
+            @else {
+                <p></p>
+                <small>
+                    1 friend in common
+                </small>
+            }
+        }
+        <p></p>
+        <button class="btn btn-light" (click)="requestFriend()">Add</button>
+    }
+    @else {
+        <p class="mt-1">
+            <small>Friend requested</small>
+        </p>
+    }
+</div>

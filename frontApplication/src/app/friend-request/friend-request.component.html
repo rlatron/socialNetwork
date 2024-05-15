@@ -1,0 +1,26 @@
+<div class="content">
+    <span style="font-weight:bold">{{friendRequest.user.name}}</span>
+    @if (isVisible) {
+        @if(friendRequest.friendsInCommon > 0) {
+            @if(friendRequest.friendsInCommon > 1) {
+                <p></p>
+                <small>
+                    {{friendRequest.friendsInCommon}} friends in common
+                </small>
+            }
+            @else {
+                <p></p>
+                <small>
+                    1 friend in common
+                </small>
+            }
+        }
+        <p></p>
+        <button class="btn btn-light" (click)="addFriend()">Accept</button>
+    }
+    @else {
+        <p class="mt-1">
+            <small>Friend added</small>
+        </p>
+    }
+</div>

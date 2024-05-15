@@ -1,0 +1,38 @@
+<div>
+    {{friend.name}}
+    <button class="btn btn-light mt-1" (click)="openChat()">Send message</button>
+    @if(isChatVisible) {
+    <div class="chat_window">
+        <div class="top_menu">
+          <div class="buttons">
+            <div class="button close" (click)="closeChat()"></div>
+            <div class="button minimize"></div>
+            <div class="button maximize"></div>
+          </div>
+          <div class="title">
+            Chat with {{ friend.name }}  
+          </div>
+        </div>
+        <ul class="messages">
+            @for (item of messageList; track $index) {
+            <li class="message right" [ngClass]="{'left': item.message_side === 'receiver', 'right': item.message_side === 'sender'}">
+                <div class="avatar"></div>
+                <div class="text_wrapper">
+                    <div class="text">{{item.text}}</div>
+                </div>
+            </li>
+            }
+        </ul>
+        <div class="bottom_wrapper clearfix">
+          <div class="message_input_wrapper">
+            <input class="message_input" placeholder="Message..." [(ngModel)]="messageInput" 
+            (keyup.enter)="sendMessage(messageInput)"/>
+          </div>
+          <div class="send_message" (click)="sendMessage(messageInput)">
+            <div class="icon"></div>
+            <div class="text">Send</div>
+          </div>
+        </div>
+    </div>
+    }
+</div>

@@ -1,0 +1,11 @@
+.add-friend-button {
+    position: absolute; /* Position the button absolutely */
+    bottom: 20px; /* Adjust bottom position as needed */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    /* Your button styles */
+  }
+
+.friend-added-text {
+    font-size: 14px;
+}
