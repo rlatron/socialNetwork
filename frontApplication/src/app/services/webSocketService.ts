@@ -9,27 +9,29 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class WebSocketService {
   private stompClients: Map<string, any> = new Map();
-  private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<ChatMessage[]>([]);
-
+  private messageSubjects: Map<string, BehaviorSubject<ChatMessage[]>> = new Map();
   connect(sessionId: string) {
     const url = '//localhost:8080/ws';
     const socket = new SockJS(url);
     const stompClient = Stomp.over(socket);
+    const messageSubject = new BehaviorSubject<ChatMessage[]>([]);
 
     this.stompClients.set(sessionId, stompClient);
+    this.messageSubjects.set(sessionId, messageSubject);
   }
 
   joinChat(sessionId: string) {
     const stompClient = this.stompClients.get(sessionId);
-    if (stompClient) {
+    const messageSubject = this.messageSubjects.get(sessionId);
+    if (stompClient && messageSubject) {
       stompClient.connect({}, ()=>{
         stompClient.subscribe(`/topic/${sessionId}`, (messages: any) => {
             const messageContent = JSON.parse(messages.body);
             console.log(messageContent);
-            const currentMessage = this.messageSubject.getValue();
+            const currentMessage = messageSubject.getValue();
             currentMessage.push(messageContent);
     
-            this.messageSubject.next(currentMessage);
+            messageSubject.next(currentMessage);
         })
       })
     } else {
@@ -46,17 +48,18 @@ export class WebSocketService {
     }
   }
 
-  getMessageSubject(){
-    console.log("Getting message subject");
-    return this.messageSubject.asObservable();
+  getMessageSubject(sessionId: string){
+    return this.messageSubjects.get(sessionId).asObservable();
   }
 
   disconnect(sessionId: string) {
     const stompClient = this.stompClients.get(sessionId);
-    if (stompClient) {
+    const messageSubject = this.messageSubjects.get(sessionId);
+    if (stompClient && messageSubject) {
       stompClient.disconnect(() => {
         console.log(`Disconnected from chat with user ID: ${sessionId}`);
         this.stompClients.delete(sessionId);
+        this.messageSubjects.delete(sessionId);
       });
     } else {
       console.error(`No connection found for user ID: ${sessionId}`);

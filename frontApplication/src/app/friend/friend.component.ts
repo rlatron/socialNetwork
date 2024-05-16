@@ -56,7 +56,7 @@ export class FriendComponent {
   }
 
   listenToMessages() {
-    this.webSocketService.getMessageSubject().subscribe((messages: any) => {
+    this.webSocketService.getMessageSubject(this.sessionId).subscribe((messages: any) => {
       this.messageList = messages.map((item: any)=> ({
         ...item,
         message_side: item.from == this.currentUser.id ? 'sender': 'receiver'
