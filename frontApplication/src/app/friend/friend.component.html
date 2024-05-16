@@ -18,6 +18,7 @@
             <li class="message right" [ngClass]="{'left': item.message_side === 'receiver', 'right': item.message_side === 'sender'}">
                 <div class="avatar"></div>
                 <div class="text_wrapper">
+                    <span class="timestamp">{{ item.time }}</span>
                     <div class="text">{{item.text}}</div>
                 </div>
             </li>

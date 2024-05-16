@@ -87,6 +87,7 @@ body {
 .messages .message.left .text_wrapper {
   background-color: #ffe6cb;
   margin-left: 20px;
+  float: left;
 }
 
 .messages .message.left .text_wrapper::after,
@@ -139,7 +140,19 @@ body {
   min-width: 100px;
   position: relative;
 }
+.messages .message .text_wrapper .timestamp {
+  position: absolute;
+  top: -2px; 
+  left: 12px; 
+  font-size: 12px; 
+  font-weight: 400;
+  color: #f6fcfe; 
+}
 
+.messages .message .text_wrapper .text {
+  font-size: 18px;  
+  font-weight: 300;
+}
 .messages .message .text_wrapper::after,
 .messages .message .text_wrapper:before {
   top: 18px;
@@ -159,11 +172,6 @@ body {
 .messages .message .text_wrapper::before {
   border-width: 15px;
   margin-top: -2px;
-}
-
-.messages .message .text_wrapper .text {
-  font-size: 18px;
-  font-weight: 300;
 }
 
 .bottom_wrapper {
