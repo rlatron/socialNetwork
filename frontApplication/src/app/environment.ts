@@ -1,4 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://localhost:8080/users'
+    apiUrlUser: 'http://localhost:8080/users',
+    apiUrlMessage: 'http://localhost:8080/messages'
 };

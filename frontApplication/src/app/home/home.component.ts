@@ -34,30 +34,30 @@ export class HomeComponent {
           this.friends = next;
         },
         error: error =>  {
-          console.error('Error making POST request:', error);
+          console.error('Error making GET request:', error);
           const errorElement = document.getElementById("error-message-friends");
           errorElement.textContent = "An error occured while loading your friends";
         }
       });
     
-      this.userService.getPossibleConnections(this.user.id)
+    this.userService.getPossibleConnections(this.user.id)
       .subscribe({
         next: next => {
           this.possibleConnections = next;
         },
         error: error =>  {
-          console.error('Error making POST request:', error);
+          console.error('Error making GET request:', error);
         }
       });
     
-      this.userService.getFriendRequests(this.user.id)
+    this.userService.getFriendRequests(this.user.id)
       .subscribe({
         next: next => {
           console.log("Getting friend requests")
           this.friendRequests = next;
         },
         error: error =>  {
-          console.error('Error making POST request:', error);
+          console.error('Error making GET request:', error);
         }
       });
   }

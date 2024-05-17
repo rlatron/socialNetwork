@@ -3,11 +3,15 @@ import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import { ChatMessage } from '../model/chatMessage';
 import { BehaviorSubject } from 'rxjs';
+import { MessageService } from './message.Service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
+  constructor(public messageService: MessageService) {
+  }
+  
   private stompClients: Map<string, any> = new Map();
   private messageSubjects: Map<string, BehaviorSubject<ChatMessage[]>> = new Map();
   connect(sessionId: string) {
@@ -15,6 +19,9 @@ export class WebSocketService {
     const socket = new SockJS(url);
     const stompClient = Stomp.over(socket);
     const messageSubject = new BehaviorSubject<ChatMessage[]>([]);
+    this.messageService.getMessages(sessionId).subscribe(messages => {
+      messageSubject.next(messages);
+    });
 
     this.stompClients.set(sessionId, stompClient);
     this.messageSubjects.set(sessionId, messageSubject);

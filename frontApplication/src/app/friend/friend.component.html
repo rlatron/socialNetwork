@@ -13,7 +13,8 @@
             Chat with {{ friend.name }}  
           </div>
         </div>
-        <ul class="messages">
+
+        <ul id="messages" class="messages">
             @for (item of messageList; track $index) {
             <li class="message right" [ngClass]="{'left': item.message_side === 'receiver', 'right': item.message_side === 'sender'}">
                 <div class="avatar"></div>
@@ -24,6 +25,7 @@
             </li>
             }
         </ul>
+
         <div class="bottom_wrapper clearfix">
           <div class="message_input_wrapper">
             <input class="message_input" placeholder="Message..." [(ngModel)]="messageInput" 

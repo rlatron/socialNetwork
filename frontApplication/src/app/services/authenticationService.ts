@@ -34,7 +34,7 @@ export class AuthenticationService {
         .set('email', email)
         .set('password', password);
 
-        return this.http.post<any>(`${environment.apiUrl}/authenticate`, {}, { params })
+        return this.http.post<any>(`${environment.apiUrlUser}/authenticate`, {}, { params })
             .pipe(map(user => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
@@ -51,7 +51,7 @@ export class AuthenticationService {
     }
 
     logon(user: User) {
-        return this.http.post<any>(`${environment.apiUrl}/new`, user)
+        return this.http.post<any>(`${environment.apiUrlUser}/new`, user)
             .pipe(map(user => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));

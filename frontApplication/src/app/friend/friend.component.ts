@@ -4,6 +4,7 @@ import { WebSocketService } from '../services/webSocketService';
 import { ChatMessage } from '../model/chatMessage';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MessageService } from '../services/message.Service';
 
 @Component({
   selector: 'app-friend',
@@ -25,7 +26,7 @@ export class FriendComponent {
   isChatVisible: boolean;
   messageInput: string = '';
 
-  constructor(public webSocketService: WebSocketService) {
+  constructor(public webSocketService: WebSocketService, public messageService: MessageService) {
     this.isChatVisible = false;
   }
   
@@ -41,7 +42,7 @@ export class FriendComponent {
     this.webSocketService.joinChat(this.sessionId);
     this.listenToMessages();
   }
-
+  
   ngOnDestroy(): void {
     this.webSocketService.disconnect(this.sessionId);
   }
@@ -61,6 +62,14 @@ export class FriendComponent {
         ...item,
         message_side: item.from == this.currentUser.id ? 'sender': 'receiver'
       }))
+      this.scrollToBottom();
+    });
+  }
+  
+  scrollToBottom(): void {
+    setTimeout(() => {
+      const messagesElement = document.getElementById('messages');
+      messagesElement.scrollTop = messagesElement.scrollHeight;
     });
   }
 

@@ -16,21 +16,21 @@ export class UserService {
         let params = new HttpParams()
         .set('id', id);
 
-        return this.http.get<User[]>(`${environment.apiUrl}/friends/${id}`);
+        return this.http.get<User[]>(`${environment.apiUrlUser}/friends/${id}`);
     }
 
     getPossibleConnections(id: number) {
         let params = new HttpParams()
         .set('id', id);
 
-        return this.http.get<PossibleConnection[]>(`${environment.apiUrl}/possibleConnections/${id}`);
+        return this.http.get<PossibleConnection[]>(`${environment.apiUrlUser}/possibleConnections/${id}`);
     }
 
     getFriendRequests(id: number) {
         let params = new HttpParams()
         .set('id', id);
 
-        return this.http.get<PossibleConnection[]>(`${environment.apiUrl}/friendRequests/${id}`);
+        return this.http.get<PossibleConnection[]>(`${environment.apiUrlUser}/friendRequests/${id}`);
     }
 
     requestFriend(id: number, idFriend: number) {
@@ -38,7 +38,7 @@ export class UserService {
         .set('id', id)
         .set('idFriend', idFriend);
 
-        return this.http.post<any>(`${environment.apiUrl}/requestFriend/${id}/${idFriend}`, {});
+        return this.http.post<any>(`${environment.apiUrlUser}/requestFriend/${id}/${idFriend}`, {});
     }
 
     addFriend(id: number, idFriend: number) {
@@ -46,6 +46,6 @@ export class UserService {
         .set('id', id)
         .set('idFriend', idFriend);
 
-        return this.http.post<any>(`${environment.apiUrl}/addFriend/${id}/${idFriend}`, {});
+        return this.http.post<any>(`${environment.apiUrlUser}/addFriend/${id}/${idFriend}`, {});
     }
 }
