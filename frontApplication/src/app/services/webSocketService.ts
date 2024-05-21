@@ -16,8 +16,9 @@ export class WebSocketService {
   private messageSubjects: Map<string, BehaviorSubject<ChatMessage[]>> = new Map();
   connect(sessionId: string) {
     const url = '//localhost:8080/ws';
-    const socket = new SockJS(url);
-    const stompClient = Stomp.over(socket);
+    const stompClient = Stomp.over(function(){
+      return new SockJS(url)
+    });
     const messageSubject = new BehaviorSubject<ChatMessage[]>([]);
     this.messageService.getMessages(sessionId).subscribe(messages => {
       messageSubject.next(messages);

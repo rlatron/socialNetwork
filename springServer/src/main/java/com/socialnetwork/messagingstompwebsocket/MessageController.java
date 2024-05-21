@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,8 +27,7 @@ public class MessageController {
 
     @GetMapping(value = "/messages/{sessionId}", produces = "application/json")
     public List<MessageData> getConversation(@PathVariable("sessionId") String sessionId) {
-        List<MessageData> messageList = messageService.getMessagesFromSession(sessionId);
-        return messageList;
+        return messageService.getMessagesFromSession(sessionId);
     }
 }
 

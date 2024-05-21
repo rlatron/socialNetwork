@@ -62,19 +62,23 @@ export class FriendComponent {
         ...item,
         message_side: item.from == this.currentUser.id ? 'sender': 'receiver'
       }))
-      this.scrollToBottom();
+      if (this.isChatVisible) {
+        this.scrollToBottom();
+      }
     });
   }
   
   scrollToBottom(): void {
-    setTimeout(() => {
-      const messagesElement = document.getElementById('messages');
-      messagesElement.scrollTop = messagesElement.scrollHeight;
-    });
+    const messagesElement = document.getElementById("messages");
+    messagesElement.scrollTop = messagesElement.scrollHeight;
+    
   }
 
   openChat(): void {
     this.isChatVisible = true;
+    setTimeout(() => {
+      this.scrollToBottom();
+    }); 
   }
   closeChat(): void {
     this.isChatVisible = false;
