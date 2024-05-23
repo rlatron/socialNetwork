@@ -28,7 +28,7 @@ export class SubscriptionFormComponent {
     }
 
   register() {
-    /*console.log('Subscription form submitted!');
+    console.log('Subscription form submitted!');
 
     const username = this.registerForm.value.username;
     const email = this.registerForm.value.email;
@@ -60,6 +60,6 @@ export class SubscriptionFormComponent {
             errorElement.textContent = "An error occured";
           }
         }
-      });*/
+      })
   } 
 }
