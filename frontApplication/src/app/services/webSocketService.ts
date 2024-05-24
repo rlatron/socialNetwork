@@ -3,7 +3,7 @@ import { Stomp } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import { ChatMessage } from '../model/chatMessage';
 import { BehaviorSubject } from 'rxjs';
-import { MessageService } from './message.Service';
+import { MessageService } from './messageService';
 
 @Injectable({
   providedIn: 'root',

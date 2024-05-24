@@ -28,4 +28,8 @@ public class MessageService {
     public List<MessageData> getMessagesFromSession(String sessionId) {
         return messageRepository.findBySessionIdOrderByDate(sessionId);
     }
+
+    public void setMessagesViewed(List<Long> messagesId) {
+        messageRepository.updateViewedByListId(messagesId, true);
+    }
 }

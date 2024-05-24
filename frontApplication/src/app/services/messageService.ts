@@ -15,4 +15,8 @@ export class MessageService {
 
         return this.http.get<ChatMessage[]>(`${environment.apiUrlMessage}/${sessionId}`);
     }
+
+    setMessagesViewed(messages: number[]) {
+        return this.http.post<any>(`${environment.apiUrlMessage}/setViewed`, messages);
+    }
 }

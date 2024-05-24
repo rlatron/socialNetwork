@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity
+@Entity(name = "messages")
 @Table(name = "messages")
 public class MessageData {
     @Id
@@ -17,6 +17,7 @@ public class MessageData {
     private String text;
     private String time;
     private Date date;
+    private boolean viewed;
 
     public MessageData() {
     }
@@ -27,6 +28,7 @@ public class MessageData {
         this.text = text;
         this.time = time;
         this.date = new Date();
+        this.viewed = false;
     }
 
     public String getFrom() {
@@ -59,5 +61,17 @@ public class MessageData {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public boolean isViewed() {
+        return viewed;
+    }
+
+    public void setViewed(boolean viewed) {
+        this.viewed = viewed;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

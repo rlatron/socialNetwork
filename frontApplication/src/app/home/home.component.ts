@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChildren, viewChildren } from '@angular/core';
 import { AuthenticationService } from '../services/authenticationService';
 import { FriendComponent } from '../friend/friend.component';
 import { User } from '../model/user';
@@ -13,7 +13,7 @@ import { FriendRequestComponent } from '../friend-request/friend-request.compone
   imports: [FriendComponent, PossibleConnectionsComponent, FriendRequestComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
-})
+})  
 export class HomeComponent {
   user: User;
   friends: User[] = [];

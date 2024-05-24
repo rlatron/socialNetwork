@@ -4,7 +4,7 @@ import { WebSocketService } from '../services/webSocketService';
 import { ChatMessage } from '../model/chatMessage';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MessageService } from '../services/message.Service';
+import { MessageService } from '../services/messageService';
 
 @Component({
   selector: 'app-friend',
@@ -23,6 +23,7 @@ export class FriendComponent {
 
   sessionId: string;
   messageList: any[] = [];
+  messageNotViewedList: any[] = [];
   isChatVisible: boolean;
   messageInput: string = '';
 
@@ -61,25 +62,42 @@ export class FriendComponent {
       this.messageList = messages.map((item: any)=> ({
         ...item,
         message_side: item.from == this.currentUser.id ? 'sender': 'receiver'
-      }))
+      }
+      ))
+      
+      this.messageNotViewedList = messages
+        .filter((item: any) => !item.viewed && item.from != this.currentUser.id)
+        .map((item: any)=> (item.id));
+
       if (this.isChatVisible) {
-        this.scrollToBottom();
+        this.viewMessages();
       }
     });
   }
   
-  scrollToBottom(): void {
-    const messagesElement = document.getElementById("messages");
-    messagesElement.scrollTop = messagesElement.scrollHeight;
+  viewMessages(): void {
+    //scroll to bottom
+    setTimeout(() => {
+      const messagesElement = document.getElementById("messages");
+      messagesElement.scrollTop = messagesElement.scrollHeight; 
+    });
+    
+    this.messageService.setMessagesViewed(this.messageNotViewedList).subscribe({
+      next: () => {
+        this.messageNotViewedList = [];
+      },
+      error: error => {
+        console.error(error);
+      }
+    });
     
   }
 
   openChat(): void {
     this.isChatVisible = true;
-    setTimeout(() => {
-      this.scrollToBottom();
-    }); 
+    this.viewMessages();
   }
+
   closeChat(): void {
     this.isChatVisible = false;
   }

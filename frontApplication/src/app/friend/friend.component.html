@@ -1,5 +1,9 @@
-<div>
+<div class = "container p-5 my-1 text-center" [ngClass]="{'bg-info': messageNotViewedList.length == 0, 
+'bg-warning': messageNotViewedList.length > 0}" >
     {{friend.name}}
+    @if(messageNotViewedList.length > 0){ 
+      <span class="badge rounded-pill badge-notification bg-danger">{{ messageNotViewedList.length }}</span>
+    }
     <button class="btn btn-light mt-1" (click)="openChat()">Send message</button>
     @if(isChatVisible) {
     <div class="chat_window">
