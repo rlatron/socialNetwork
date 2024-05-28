@@ -1,0 +1,43 @@
+
+<div id="friend-div">
+    @if(friends.length > 0) {
+    <div class="bg-light" >
+        <h3 class="mb-4 text-center"> These are your friends</h3>
+
+        <div class="friends">
+            @for(friend of friends; track friend){
+                <app-friend [currentUser]="user" [friend]="friend" 
+                ></app-friend>
+            }
+        </div>
+    </div>
+    }
+    <div id="error-message-friends" class="error-text"></div>
+</div>
+
+@if(friendRequests.length > 0) {
+<div class="bg-light" >
+    <h3 class="mb-4 text-center"> You have new friend requests</h3>
+
+    <div class="possible-connections">
+        @for(friendRequest of friendRequests; track friendRequest){
+            <app-friend-request [currentUser]="user" [friendRequest]="friendRequest"
+            class="container p-3 my-1 bg-white text-center"></app-friend-request>
+        }
+    </div>
+</div>
+}
+
+@if(possibleConnections.length > 0) {
+<div>
+    <h3 class="mb-4 text-center"> Do you know these people?</h3>
+
+    <div class="possible-connections">
+        @for(possibleConnection of possibleConnections; track possibleConnection){
+            <app-possible-connection [currentUser]="user" [possibleConnection]="possibleConnection"
+             class="container p-3 my-1 bg-info text-center">
+            </app-possible-connection>
+        }
+    </div>
+</div>
+}

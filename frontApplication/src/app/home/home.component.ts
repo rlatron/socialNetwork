@@ -1,16 +1,13 @@
-import { Component, ViewChildren, viewChildren } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthenticationService } from '../services/authenticationService';
-import { FriendComponent } from '../friend/friend.component';
 import { User } from '../model/user';
-import { UserService } from '../services/userService';
 import { PossibleConnection } from '../model/possible-connection';
-import { PossibleConnectionsComponent } from '../possible-connection/possible-connections.component';
-import { FriendRequestComponent } from '../friend-request/friend-request.component';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FriendComponent, PossibleConnectionsComponent, FriendRequestComponent],
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })  
@@ -21,46 +18,12 @@ export class HomeComponent {
   friendRequests: PossibleConnection[] = [];
 
   constructor (
-    private authenticationService: AuthenticationService,
-    private userService: UserService
+    private authenticationService: AuthenticationService
     ) {
     this.user = JSON.parse(localStorage.getItem('user'));
   }
 
-  ngOnInit() {
-    this.userService.getFriends(this.user.id)
-      .subscribe({
-        next: next => {
-          this.friends = next;
-        },
-        error: error =>  {
-          console.error('Error making GET request:', error);
-          const errorElement = document.getElementById("error-message-friends");
-          errorElement.textContent = "An error occured while loading your friends";
-        }
-      });
-    
-    this.userService.getPossibleConnections(this.user.id)
-      .subscribe({
-        next: next => {
-          this.possibleConnections = next;
-        },
-        error: error =>  {
-          console.error('Error making GET request:', error);
-        }
-      });
-    
-    this.userService.getFriendRequests(this.user.id)
-      .subscribe({
-        next: next => {
-          console.log("Getting friend requests")
-          this.friendRequests = next;
-        },
-        error: error =>  {
-          console.error('Error making GET request:', error);
-        }
-      });
-  }
+  ngOnInit() {}
 
   logout() : void {
     this.authenticationService.logout();  

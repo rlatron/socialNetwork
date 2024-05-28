@@ -1,50 +1,26 @@
 <p>Welcome {{user.name}}!</p>
 
 <div class="position-relative mb-5">
-    <button (click)="logout()" class="btn btn-outline-danger position-absolute top-0 end-0 translate-middle">
-        logout
-    </button>
-</div>
-
-<div id="friend-div">
-    @if(friends.length > 0) {
-    <div class="bg-light" >
-        <h3 class="mb-4 text-center"> These are your friends</h3>
-
-        <div class="friends">
-            @for(friend of friends; track friend){
-                <app-friend [currentUser]="user" [friend]="friend" 
-                ></app-friend>
-            }
-        </div>
-    </div>
-    }
-    <div id="error-message-friends" class="error-text"></div>
-</div>
-
-@if(friendRequests.length > 0) {
-<div class="bg-light" >
-    <h3 class="mb-4 text-center"> You have new friend requests</h3>
-
-    <div class="possible-connections">
-        @for(friendRequest of friendRequests; track friendRequest){
-            <app-friend-request [currentUser]="user" [friendRequest]="friendRequest"
-            class="container p-3 my-1 bg-white text-center"></app-friend-request>
-        }
+    <div class="position-absolute top-0 end-0">
+        <button (click)="logout()" class="btn btn-outline-danger translate-middle">
+            logout
+        </button>
+        <!--
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#verticalNavbar" aria-expanded="false" aria-controls="verticalNavbar">
+            Toggle Navbar
+        </button>
+        !-->
+        <nav id="verticalNavbar" class="navbar side-bar flex-column vh-100">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="feed">Feed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="friends-list">List of friends</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
-}
 
-@if(possibleConnections.length > 0) {
-<div>
-    <h3 class="mb-4 text-center"> Do you know these people?</h3>
-
-    <div class="possible-connections">
-        @for(possibleConnection of possibleConnections; track possibleConnection){
-            <app-possible-connection [currentUser]="user" [possibleConnection]="possibleConnection"
-             class="container p-3 my-1 bg-info text-center">
-            </app-possible-connection>
-        }
-    </div>
-</div>
-}
+<router-outlet />
