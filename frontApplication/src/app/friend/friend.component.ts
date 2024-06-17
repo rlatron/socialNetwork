@@ -27,10 +27,11 @@ export class FriendComponent {
   isChatVisible: boolean;
   messageInput: string = '';
 
-  constructor(public webSocketService: WebSocketService, public messageService: MessageService) {
+  constructor(private webSocketService: WebSocketService, private messageService: MessageService) {
     this.isChatVisible = false;
   }
   
+  //allows to define the session id between the friend and current user, by using their respective ids
   formatSessionId(): void {
       const min = Math.min(this.currentUser.id, this.friend.id);
       const max = Math.max(this.currentUser.id, this.friend.id);

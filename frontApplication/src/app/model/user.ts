@@ -2,8 +2,12 @@ export class User {
     authdata?: string;
     constructor(
       public name: string,
-      public password: string,
-      public email: string,
-      public id?: number
+      private password: string,
+      private email: string,
+      private _id?: number
     ) {}
+
+    public get id(): number {
+      return this._id;
+    }
   }

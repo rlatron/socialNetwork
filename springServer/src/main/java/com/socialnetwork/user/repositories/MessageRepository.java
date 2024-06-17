@@ -1,6 +1,6 @@
-package com.socialnetwork.messagingstompwebsocket.repositories;
+package com.socialnetwork.user.repositories;
 
-import com.socialnetwork.messagingstompwebsocket.entities.MessageData;
+import com.socialnetwork.user.entities.MessageData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

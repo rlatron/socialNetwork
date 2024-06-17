@@ -1,4 +1,4 @@
-package com.socialnetwork.messagingstompwebsocket.entities;
+package com.socialnetwork.user.entities;
 
 import jakarta.persistence.*;
 

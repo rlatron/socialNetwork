@@ -1,7 +1,7 @@
-package com.socialnetwork.messagingstompwebsocket;
+package com.socialnetwork.user;
 
-import com.socialnetwork.messagingstompwebsocket.entities.MessageData;
-import com.socialnetwork.messagingstompwebsocket.services.MessageService;
+import com.socialnetwork.user.entities.MessageData;
+import com.socialnetwork.user.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;

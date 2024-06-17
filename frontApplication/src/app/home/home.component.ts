@@ -12,7 +12,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './home.component.css'
 })  
 export class HomeComponent {
-  user: User;
+  userName: string;
   friends: User[] = [];
   possibleConnections: PossibleConnection[] = [];
   friendRequests: PossibleConnection[] = [];
@@ -20,7 +20,7 @@ export class HomeComponent {
   constructor (
     private authenticationService: AuthenticationService
     ) {
-    this.user = JSON.parse(localStorage.getItem('user'));
+    this.userName = JSON.parse(localStorage.getItem('user')).name;
   }
 
   ngOnInit() {}

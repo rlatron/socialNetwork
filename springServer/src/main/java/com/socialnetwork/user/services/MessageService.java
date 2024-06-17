@@ -1,7 +1,7 @@
-package com.socialnetwork.messagingstompwebsocket.services;
+package com.socialnetwork.user.services;
 
-import com.socialnetwork.messagingstompwebsocket.entities.MessageData;
-import com.socialnetwork.messagingstompwebsocket.repositories.MessageRepository;
+import com.socialnetwork.user.entities.MessageData;
+import com.socialnetwork.user.repositories.MessageRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
