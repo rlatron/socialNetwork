@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../model/user';
 import { Post } from '../model/post';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })

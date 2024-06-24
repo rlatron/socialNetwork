@@ -1,2 +1,7 @@
-<h6>{{post.authorName}}</h6>
-<p>{{post.Date}} : {{post.Text}}</p>
+<div class="col-10">
+    <div class="container post-container">
+        <h6>{{post.authorName}}</h6>
+        <small class="text-muted"> {{post.Date | date: 'dd MMMM'}} </small>
+        <p>{{post.Text}}</p>
+    </div>
+</div>

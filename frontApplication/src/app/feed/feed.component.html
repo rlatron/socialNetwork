@@ -21,7 +21,9 @@
     </div>
     <div>
         @for (post of posts; track $index) {
-            <app-post [currentUser]="currentUser" [post]="post"></app-post>
+            <div class="row">
+                <app-post [currentUser]="currentUser" [post]="post"></app-post>
+            </div>
         }
         <div id="error-message-posts" class="error-text"></div>
     </div>
