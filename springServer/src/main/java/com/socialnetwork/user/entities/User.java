@@ -19,13 +19,13 @@ public class User {
     private String password;
     private String passwordSalt;
     private String email;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
     @JoinTable(name = "USER_CONNECTIONS", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "connected_user_id"))
     @JsonIgnore
     private Set<User> connections;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
     @JoinTable(name = "FRIEND_REQUESTS", joinColumns = @JoinColumn(name = "requested_user_id"),
             inverseJoinColumns = @JoinColumn(name = "requesting_user_id"))
     @JsonIgnore
