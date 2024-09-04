@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "posts")
+@Table(name = "comments")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,8 +15,11 @@ public class Comment {
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    @JoinColumn(name = "post_id", insertable = false, updatable = false)
     private Post post;
+
+    @Column(name = "post_id", nullable = false)
+    private Long postId;
 
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
@@ -55,5 +58,13 @@ public class Comment {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 }
