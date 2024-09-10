@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../environment";
 import { Post } from "../model/post";
+import { Comment } from '../model/comment';
 import {  Observable, map, switchMap } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
@@ -19,7 +20,11 @@ export class PostService {
 
     getFeed() {
         return this.http.get<any[]>(`${environment.apiUrlPost}/feed`).pipe(
-            map(postArray => postArray.map(data => new Post(data.author, data.text, data.date)))
+            map(postArray => postArray.map(data => new Post(data.author, data.text, data.date, data.id)))
         );
+    }
+
+    makeComment(comment: Comment): Observable<Post[]> {
+        return this.http.post<any>(`${environment.apiUrlComment}/${comment.PostId}/new`, comment);
     }
 }

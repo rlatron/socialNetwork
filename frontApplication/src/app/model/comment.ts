@@ -1,11 +1,12 @@
+import { Post } from "./post";
 import { User } from "./user";
 
-export class Post {
+export class Comment {
   constructor(
     private author: User,
     private text: string,
     private date: Date,
-    private _id?: number
+    private post: Post
   ) { }
 
   public get authorName(): string {
@@ -20,7 +21,11 @@ export class Post {
     return this.date;
   }
 
-  public get id(): number {
-    return this._id;
+  public get Post(): Post {
+    return this.post;
+  }
+
+  public get PostId(): number {
+    return this.Post.id;
   }
 }

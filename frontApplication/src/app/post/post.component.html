@@ -1,7 +1,15 @@
 <div class="col-10">
-    <div class="container post-container">
-        <h6>{{post.authorName}}</h6>
-        <small class="text-muted"> {{post.Date | date: 'dd MMMM'}} </small>
-        <p>{{post.Text}}</p>
+    <div class="container post-container position-relative">
+        <div class="container position-relative">
+            <h6>{{post.authorName}}</h6>
+            <small class="text-muted"> {{post.Date | date: 'dd MMMM'}} </small>
+            <p>{{post.Text}}</p>
+            <button class="btn btn-sm btn-secondary position-absolute bottom-0 end-0"
+            (click)="displayInput()">Comment</button>
+        </div>
+        @if(isCommentInputVisible) {
+        <input type="text" class="form-control" placeholder="Write a comment..." 
+                [(ngModel)]="commentMessage" (keyup.enter)="makeComment()" />
+        }
     </div>
 </div>
